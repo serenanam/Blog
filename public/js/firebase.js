@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDhmJHd03azTwvdHVbRqM0xunVBQjFnAs0",
@@ -11,7 +12,14 @@ const firebaseConfig = {
     measurementId: "G-62HBJ1Z5HC"
 };
 
+
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firestore
 const db = getFirestore(app);
+
+// Initialize Firebase Authentication and get a reference to the service
+const auth = getAuth(app);
 
 export default db;

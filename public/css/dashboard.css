@@ -1,0 +1,68 @@
+textarea::-webkit-scrollbar{
+    width: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb{
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.sign-in {
+    width: 500px;
+    height: 30px;
+    display: block;
+    margin: auto;
+    margin-top: 300px;
+}
+
+.email, 
+.pw{
+    width: 100%;
+    min-height: 30px;
+    height: auto;
+    outline: one;
+    font-size: 20px;
+    font-weight: 500;
+    color: #2d2d2d;
+    resize: none;
+    border-color: black;
+    border-width: 2px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.email::placeholder,
+.pw::placeholder{
+    color: #2d2d2d;
+}
+
+.btn{
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.btnNav {
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 10px;
+    background: rgba(240,235,234);
+    color: #59514a;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.btn.grey {
+    background:#c5c5c5;
+    color: black;
+    margin: 0 10px;
+}
+
+.heading {
+    color: black;
+    font-size: 60px;
+    text-align: center;
+    position: relative;
+    margin: 100px 0 20px;
+}
+

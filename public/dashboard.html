@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Blog : Dashboard </title>
+    
+        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/editor.css">
+        <link rel="stylesheet" href="css/dashboard.css">
+</head>  
+
+<body>
+    <nav class="navbar">
+        <img src="sloth.png" class="logo" alt="">
+        <ul class="links-container">
+            <li class="link-item"><a href="/" class="btnNav"> home </a></li>
+            <li class="link-item"> <a href="/editor" class="btnNav"> write a blog </a> </li>
+        </ul>
+    </nav>
+
+    <!-- Login -->
+    <div class="sign-in">
+        <textarea type="text" class="email" placeholder="Email"></textarea>
+        <textarea type="text" class="pw" placeholder="Password"></textarea>
+        <button class="btn dark sign-up-btn"> sign up </button>
+        <button class="btn dark sign-in-btn"> sign in </button>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+        <h1 class="heading"> Your blogs </h1>
+
+        <!-- blog section -->
+        <section class="blogs-section">
+            <div class="blog-card">
+                <img src="img/header.png" class="blog-image" alt="">
+                <h1 class="blog-title">Lorem ipsum dolor sit amet consectetur.</h1>
+                <p class="blog-overview">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt incidunt fugiat quos porro repellat harum. Adipisci tempora corporis rem cum.</p>
+                <a href="/" class="btn dark">read</a>
+                <a href="/" class="btn grey">edit</a>
+                <a href="/" class="btn grey">delete</a>
+            </div>
+        </section>
+
+    </div>
+    
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/nav.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+
+</body>
+</html>

@@ -5,6 +5,8 @@ import {
     doc,
     setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 
 const blogTitleField = document.querySelector('.title');
 const articleField = document.querySelector('.article');
@@ -79,7 +81,8 @@ publishBtn.addEventListener('click', () => {
             title: blogTitleField.value,
             article: articleField.value,
             bannerImage: bannerPath,
-            publishedAt: `${date.getDate()} ${months[date.getMonth()-1]} ${date.getFullYear()}`
+            publishedAt: `${date.getDate()} ${months[date.getMonth()-1]} ${date.getFullYear()}`,
+            author: auth.currentUser
         })
         .then(() => {
             // console.log("date entered");
@@ -91,3 +94,17 @@ publishBtn.addEventListener('click', () => {
         })
     }
 })
+
+
+//checking for user log in status
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      location.replace("/admin");
+      
+    } else {
+      // User is signed out
+      // ...
+      login();
+      console.log("logged out");
+    }
+  });
