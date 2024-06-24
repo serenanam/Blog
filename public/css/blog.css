@@ -46,3 +46,13 @@
     font-size: 40px;
     margin-top: 80px;
 }
+
+.btnNav {
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 10px;
+    background: rgba(240,235,234);
+    color: #59514a;
+    text-decoration: none;
+    text-transform: capitalize;
+}

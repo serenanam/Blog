@@ -2,6 +2,7 @@ import db from './firebase.js';
 import {
     collection,
     addDoc,
+    doc,
     setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -59,6 +60,7 @@ publishBtn.addEventListener('click', () => {
     if(!bannerPath) {
         alert("upload a banner image to publish this post");
     }
+
     if(articleField.value.length && blogTitleField.value.length) {
         //generating id
         let letters = 'abcdefghijklmnopqrstuvwxyz';
