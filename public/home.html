@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Sleepy Sloth Snippets </title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+
+</head>
+<body>
+    <nav class="navbar">
+        <img src="sloth.png" class="logo" alt="">
+        <ul class="links-container">
+            <li class="link-item"><a href="/" class="btnNav"> home </a></li>
+            <li class="link-item"> <a href="/editor" class="btnNav"> write a blog </a> </li>
+        </ul>
+    </nav>
+
+    <header class="header">
+        <div class="content">
+            <h1 class="heading">
+                <span class="medium"> Sleepy Sloth Snippets </span>
+                <span class="small"> Snippets of my life </span>
+            </h1>
+            <a href="/editor" class="btn dark"> write a blog</a>
+        </div>
+    </header>
+
+    <!-- blog section -->
+    <section class="blogs-section">
+    </section>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/home.js"></script>
+
+</body>
+</html>
