@@ -56,6 +56,9 @@ const addImage = (imagepath, alt) => {
 let months = ["Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dev"];
 
 publishBtn.addEventListener('click', () => {
+    if(!bannerPath) {
+        alert("upload a banner image to publish this post");
+    }
     if(articleField.value.length && blogTitleField.value.length) {
         //generating id
         let letters = 'abcdefghijklmnopqrstuvwxyz';
@@ -70,7 +73,7 @@ publishBtn.addEventListener('click', () => {
         let date = new Date(); // for published at info
 
         //access firestore with db variable;
-        addDoc(collection(db, "blogs"), {
+        setDoc(doc(collection(db, "blogs"), docName), {
             title: blogTitleField.value,
             article: articleField.value,
             bannerImage: bannerPath,

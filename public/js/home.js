@@ -9,7 +9,7 @@ import {
 const blogSection = document.querySelector('.blogs-section');
 
 
-getDocs(query(collection(db, "blogs"), orderBy("publishedAt", "asc"))).then((blogs) => {
+getDocs(query(collection(db, "blogs"))).then((blogs) => {
     blogs.forEach(blog => {
         if(blog.id != decodeURI(location.pathname.split("/").pop())) {
             createBlog(blog);
