@@ -95,6 +95,7 @@ img{
 
 .blogs-section
 {
+    word-break: break-word;
     width: 100%;
     padding: 50px 5vw;
     display: grid;

@@ -22,7 +22,7 @@ onAuthStateChanged(auth, (user) => {
       document.getElementById('logout-link').addEventListener('click', (event) => {
         event.preventDefault();
         logoutUser();
-    });
+      });
   
     } else {
       // User is signed out
@@ -30,7 +30,6 @@ onAuthStateChanged(auth, (user) => {
   
       ul.innerHTML += `
       <li class="link-item"> <a href="/admin" class="btnNav"> login </a> </li>
-
       `
     }
-  });
+});

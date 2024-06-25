@@ -3,10 +3,12 @@ import {
     collection,
     addDoc,
     doc,
-    setDoc
+    setDoc,
+    getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+const auth = getAuth();
 
 const blogTitleField = document.querySelector('.title');
 const articleField = document.querySelector('.article');
@@ -60,51 +62,70 @@ let months = ["Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug", "Sep", "Oct", "No
 
 publishBtn.addEventListener('click', () => {
     if(!bannerPath) {
-        alert("upload a banner image to publish this post");
+        alert("upload a banner image to publish this post"); //NOTE: Banner will not show up properly if the name of the file has spaces. should fix in the future
     }
 
     if(articleField.value.length && blogTitleField.value.length) {
-        //generating id
-        let letters = 'abcdefghijklmnopqrstuvwxyz';
-        let blogTitle = blogTitleField.value.split(" ").join("-");
-        let id = '';
-        for(let i = 0; i < 4; i++) {
-            id += letters[Math.floor(Math.random() * letters.length)];
+        let docName;
+        if(blogID[0] == 'editor') {
+            //generating id
+            let letters = 'abcdefghijklmnopqrstuvwxyz';
+            let blogTitle = blogTitleField.value.split(" ").join("-");
+            let id = '';
+            for(let i = 0; i < 4; i++) {
+                id += letters[Math.floor(Math.random() * letters.length)];
+            }
+            //setting up docName
+            docName = `${blogTitle}-${id}`;
+        } else {
+            docName = decodeURI(blogID[0]);
         }
-
-        //setting up docName
-        let docName = `${blogTitle}-${id}`;
+        
         let date = new Date(); // for published at info
 
-        //access firestore with db variable;
-        setDoc(doc(collection(db, "blogs"), docName), {
-            title: blogTitleField.value,
-            article: articleField.value,
-            bannerImage: bannerPath,
-            publishedAt: `${date.getDate()} ${months[date.getMonth()-1]} ${date.getFullYear()}`,
-            author: auth.currentUser
-        })
-        .then(() => {
-            // console.log("date entered");
-            location.href = `/${docName}`;
-         
-        })
-        .catch((err) => {
-            console.error(err);
-        })
+        //checking for user log in status
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                //access firestore with db variable;
+                setDoc(doc(collection(db, "blogs"), docName), {
+                    title: blogTitleField.value,
+                    article: articleField.value,
+                    bannerImage: bannerPath,
+                    publishedAt: `${date.getDate()} ${months[date.getMonth()-1]} ${date.getFullYear()}`,
+                    author: user.email.split('@')[0]
+                })
+                .then(() => {
+                    // console.log("date entered");
+                    location.href = `/${docName}`;
+                
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
+            } else {
+                location.replace("/admin");
+            }
+        });
     }
 })
 
 
-//checking for user log in status
-onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      location.replace("/admin");
-      
-    } else {
-      // User is signed out
-      // ...
-      login();
-      console.log("logged out");
-    }
-  });
+//checking for existing blog edits
+let blogID = location.pathname.split("/");
+blogID.shift();
+if(blogID[0] != "editor") {
+    //that means the page exists
+    let docRef = doc(db, "blogs", decodeURI(blogID[0]));
+    getDoc(docRef).then((doc) => {
+        // console.log(doc.data());
+        if(doc.exists) {
+            let data = doc.data();
+            bannerPath = data.bannerImage;
+            banner.style.backgroundImage = `url(${bannerPath})`;
+            blogTitleField.value = data.title;
+            articleField.value = data.article;
+        } else {
+            location.replace("/");
+        }
+    })
+}

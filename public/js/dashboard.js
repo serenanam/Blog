@@ -1,4 +1,13 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import db from './firebase.js';
+import {
+    collection,
+    getDocs,
+    query,
+    where,
+    deleteDoc,
+    doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const auth = getAuth();
 
@@ -11,6 +20,7 @@ const signInBtn = document.querySelector('.sign-in-btn');
 const dashboardField = document.querySelector('.dashboard');
 const loginField = document.querySelector('.sign-in');
 
+const blogSection = document.querySelector('.blogs-section');
 
 const login = () => {
   signUpBtn.addEventListener('click', () => {
@@ -57,6 +67,8 @@ onAuthStateChanged(auth, (user) => {
       if(loginField) {
         loginField.style.display = 'none';
       }
+
+      getUserWrittenBlogs(user.email);
   } else {
 
       login();
@@ -72,4 +84,50 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+//fetch user written blogs
+
+const getUserWrittenBlogs = (userEmail) => {
+  getDocs(query(collection(db, 'blogs'), where('author', '==', userEmail.split('@')[0])))
+  .then((blogs) => {
+    blogs.forEach((blog) => {
+      createBlog(blog);
+    })
+  })
+  .catch((error) => {
+    console.log("error getting blogs");
+    console.log(error);
+  })
+}
+
+const deleteBlog = (id) => {
+  deleteDoc(doc(db, "blogs", id)).then(() => {
+    location.reload();
+  })
+  .catch((error) => {
+    console.log("error deleting the blog");
+  })
+}
+
+const createBlog = (blog) => {
+  let data = blog.data();
+  blogSection.innerHTML += 
+  `<div class="blog-card">
+      <img src="${data.bannerImage}" class="blog-image" alt="">
+      <h1 class="blog-title">${data.title.substring(0, 100) + '...'} </h1>
+      <p class="blog-overview"> ${data.article.substring(0, 50) + '...'} </p>
+      <a href="/${blog.id}" class="btn dark"> read </a>
+      <a href="/${blog.id}" class="btn grey"> edit </a>
+      <a href="#" class="btn grey delete-btn" > delete </a>
+
+  </div>`;
+
+  let deleteBtn = document.querySelector('.delete-btn');
+  deleteBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    deleteBlog(blog.id);
+  });
+
+  // <a href="#" onclick="deleteBlog('${blog.id}')" class="btn grey delete-btn"> delete </a>
+
+}
 
