@@ -59,10 +59,17 @@ textarea::-webkit-scrollbar-thumb{
 }
 
 .heading {
+    
+    margin-top: 60px;
+    height: calc(50vh - 60px);
     color: black;
     font-size: 60px;
     text-align: center;
-    position: relative;
     margin: 100px 0 20px;
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
