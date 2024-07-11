@@ -109,6 +109,36 @@ publishBtn.addEventListener('click', () => {
     }
 })
 
+//checking for user log in status
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        location.replace("/admin");
+    }
+});
+
+//checking for user log in status
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        //access firestore with db variable;
+        setDoc(doc(collection(db, "blogs"), docName), {
+            title: blogTitleField.value,
+            article: articleField.value,
+            bannerImage: bannerPath,
+            publishedAt: `${date.getDate()} ${months[date.getMonth()-1]} ${date.getFullYear()}`,
+            author: user.email.split('@')[0]
+        })
+        .then(() => {
+            // console.log("date entered");
+            location.href = `/${docName}`;
+        
+        })
+        .catch((err) => {
+            console.error(err);
+        })
+    } else {
+        location.replace("/admin");
+    }
+});
 
 //checking for existing blog edits
 let blogID = location.pathname.split("/");

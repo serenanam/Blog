@@ -48,6 +48,7 @@ const login = () => {
         const user = userCredential.user;
         // ...
         console.log("signed in");
+        location.reload();
       })
       .catch((error) => {
         const errorCode = error.code;
