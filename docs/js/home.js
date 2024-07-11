@@ -2,8 +2,6 @@ import db from './firebase.js';
 import {
     collection,
     getDocs,
-    doc,
-    orderBy,
     query
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const blogSection = document.querySelector('.blogs-section');
@@ -24,6 +22,6 @@ const createBlog = (blog) => {
         <img src="${data.bannerImage}" class="blog-image" alt="">
         <h1 class="blog-title">${data.title.substring(0, 100) + '...'} </h1>
         <p class="blog-overview"> ${data.article.substring(0, 50) + '...'} </p>
-        <a href="/${blog.id}" class="btn dark"> read </a>
+        <a href="/${blog.id}.html" class="btn dark"> read </a>
     </div>`;
 }

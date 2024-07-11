@@ -17,7 +17,7 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
       ul.innerHTML += `
       <li class="link-item"> <a href="dashboard.html" class="btnNav"> dashboard </a> </li>
-      <li class="link-item"> <a href="#" id="logout-link" onclick="logoutUser()" class="btnNav"> logout </a> </li>
+      <li class="link-item"> <a href="dashboard.html" id="logout-link" onclick="logoutUser()" class="btnNav"> logout </a> </li>
       `
       document.getElementById('logout-link').addEventListener('click', (event) => {
         event.preventDefault();

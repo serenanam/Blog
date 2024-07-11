@@ -115,8 +115,8 @@ const createBlog = (blog) => {
       <img src="${data.bannerImage}" class="blog-image" alt="">
       <h1 class="blog-title">${data.title.substring(0, 100) + '...'} </h1>
       <p class="blog-overview"> ${data.article.substring(0, 50) + '...'} </p>
-      <a href="/${blog.id}" class="btn dark"> read </a>
-      <a href="/${blog.id}" class="btn grey"> edit </a>
+      <a href="/${blog.id}.html" class="btn dark"> read </a>
+      <a href="/${blog.id}.html" class="btn grey"> edit </a>
       <a href="#" class="btn grey delete-btn" > delete </a>
 
   </div>`;
