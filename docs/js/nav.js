@@ -29,7 +29,7 @@ onAuthStateChanged(auth, (user) => {
       // ...
   
       ul.innerHTML += `
-      <li class="link-item"> <a href="/admin" class="btnNav"> login </a> </li>
+      <li class="link-item"> <a href="dashboard.html" class="btnNav"> login </a> </li>
       `
     }
 });
