@@ -5,6 +5,7 @@
     display: block;
     margin: auto;
     margin-top: 300px;
+    font-family: 'poppins', sans-serif;
 }
 
 .email, 
@@ -33,6 +34,7 @@
     border: none;
     outline: none;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .btnNav {
@@ -48,7 +50,9 @@
 .btn.grey {
     background:#c5c5c5;
     color: black;
-    margin: 0 10px;
+    /* margin: 0 10px; */
+    margin-left: 10px;
+
 }
 
 .heading {

@@ -1,0 +1,59 @@
+textarea::-webkit-scrollbar{
+    width: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb{
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.sign-up {
+    width: 500px;
+    height: 30px;
+    display: block;
+    margin: auto;
+    margin-top: 300px;
+    font-family: 'poppins', sans-serif;
+}
+
+.first-name, .last-name {
+    width: 100%;
+    min-height: 30px;
+    height: auto;
+    outline: one;
+    font-size: 20px;
+    font-weight: 500;
+    color: #2d2d2d;
+    resize: none;
+    border-color: black;
+    border-width: 2px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.email::placeholder,
+.pw::placeholder,
+.first-name::placeholder,
+.last-name::placeholder
+{
+    color: #2d2d2d;
+}
+
+.email, 
+.pw
+{
+    width: 100%;
+    min-height: 30px;
+    height: auto;
+    outline: one;
+    font-size: 20px;
+    font-weight: 500;
+    color: #2d2d2d;
+    resize: none;
+    border-color: black;
+    border-width: 2px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+

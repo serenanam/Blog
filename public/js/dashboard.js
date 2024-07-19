@@ -11,8 +11,11 @@ import {
 
 const auth = getAuth();
 
+const firstNameField = document.querySelector('.first-name');
+const lastNameField = document.querySelector('.last-name');
 const emailField = document.querySelector('.email');
 const pwField = document.querySelector('.pw');
+
 
 const signUpBtn = document.querySelector('.sign-up-btn');
 const signInBtn = document.querySelector('.sign-in-btn');
@@ -24,7 +27,7 @@ const blogSection = document.querySelector('.blogs-section');
 
 const login = () => {
   signUpBtn.addEventListener('click', () => {
-    if(emailField.value.length && pwField.value.length) {
+    if(emailField.value.length && pwField.value.length && firstNameField.value.length && lastNameField.value.length) {
       createUserWithEmailAndPassword(auth, emailField.value, pwField.value).then((userCredential) => {
       // Signed up 
       const user = userCredential.user;
@@ -103,6 +106,7 @@ const getUserWrittenBlogs = (userEmail) => {
 const deleteBlog = (id) => {
   deleteDoc(doc(db, "blogs", id)).then(() => {
     location.reload();
+    console.log("reloaded page bc in this call");
   })
   .catch((error) => {
     console.log("error deleting the blog");
@@ -115,16 +119,16 @@ const createBlog = (blog) => {
   `<div class="blog-card">
       <img src="${data.bannerImage}" class="blog-image" alt="">
       <h1 class="blog-title">${data.title.substring(0, 100) + '...'} </h1>
-      <p class="blog-overview"> ${data.article.substring(0, 50) + '...'} </p>
+      <p class="blog-overview"> ${data.article.substring(0, 40) + '...'} </p>
       <a href="/${blog.id}" class="btn dark"> read </a>
       <a href="/${blog.id}" class="btn grey"> edit </a>
-      <a href="#" class="btn grey delete-btn" > delete </a>
-
+      <a href="#" class="btn grey delete-btn"> delete </a>
   </div>`;
 
   let deleteBtn = document.querySelector('.delete-btn');
-  deleteBtn.addEventListener('click', (event) => {
-    event.preventDefault();
+  deleteBtn.addEventListener('click', () => {
+    // event.preventDefault();
+    console.log("reached function call");
     deleteBlog(blog.id);
   });
 
